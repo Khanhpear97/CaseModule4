@@ -38,7 +38,7 @@ public class ProductController {
     @GetMapping("")
     public ModelAndView findAll(@PageableDefault Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("/product/list");
-        modelAndView.addObject("product", productService.findAll(pageable));
+        modelAndView.addObject("products", productService.findAll(pageable));
         return modelAndView;
     }
 
@@ -49,7 +49,14 @@ public class ProductController {
         return modelAndView;
     }
 
-    @PostMapping("/create")
+    @GetMapping("/{id}")
+    public ModelAndView showUpdateForm(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("/product/form");
+        modelAndView.addObject("products", productService.findById(id));
+        return modelAndView;
+    }
+
+    @PostMapping
     public String save(@ModelAttribute Product product) {
 //        MultipartFile file = product.getFile();
 //        if (file.getSize() != 0) {
@@ -67,11 +74,6 @@ public class ProductController {
 //        }
         productService.save(product);
         return "redirect:/api/products";
-    }
-
-    @GetMapping("/{id}")
-    public ModelAndView showUpdateForm(@PathVariable Long id) {
-        return new ModelAndView("/product/form", "product",productService.findById(id));
     }
 
     @GetMapping("/delete/{id}")

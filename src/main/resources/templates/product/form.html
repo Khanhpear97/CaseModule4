@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h1>Form product</h1>
-    <form th:action="@{/api/products/create}" method="post"
+    <form th:action="@{/api/products}" method="post"
           th:object="${products}" enctype="multipart/form-data">
         <label><input type="text" th:field="*{id}" hidden></label>
         <label><input type="text" th:field="*{image}" hidden></label>
