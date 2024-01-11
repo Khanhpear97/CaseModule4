@@ -4,8 +4,10 @@ import com.example.casemodule4.model.Category;
 import com.example.casemodule4.model.Product;
 import com.example.casemodule4.service.ICategoryService;
 import com.example.casemodule4.service.IProductService;
+import jakarta.validation.constraints.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -36,7 +38,7 @@ public class ProductController {
 
 
     @GetMapping("")
-    public ModelAndView findAll(@PageableDefault Pageable pageable) {
+    public ModelAndView findAll(@PageableDefault(size = 5) Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("/product/list");
         modelAndView.addObject("products", productService.findAll(pageable));
         return modelAndView;
