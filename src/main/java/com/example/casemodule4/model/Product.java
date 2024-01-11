@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "table")
+@Table(name = "product")
 @Data
 public class Product {
     @Id
@@ -17,4 +17,6 @@ public class Product {
 
     @ManyToOne
     private Category category;
+
+
 }

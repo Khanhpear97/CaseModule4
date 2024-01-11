@@ -1,7 +1,7 @@
 package com.example.casemodule4.security.jwt;
 
 import com.example.casemodule4.security.service.JwtService;
-import com.example.casemodule4.security.service.UserService;
+import com.example.casemodule4.service.impl.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

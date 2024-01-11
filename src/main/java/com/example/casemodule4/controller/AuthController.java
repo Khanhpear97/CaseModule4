@@ -3,7 +3,7 @@ package com.example.casemodule4.controller;
 import com.example.casemodule4.model.Users;
 import com.example.casemodule4.security.service.JwtResponse;
 import com.example.casemodule4.security.service.JwtService;
-import com.example.casemodule4.security.service.UserService;
+import com.example.casemodule4.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
