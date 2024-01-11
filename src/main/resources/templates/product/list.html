@@ -48,7 +48,7 @@
     <tr th:each="p, ps : ${products}">
       <td th:text="${ps.count}"></td>
       <td th:text="${p.name}"></td>
-      <td><img th:src="@{'/image/' + ${p.image}}" alt="" src=""></td>
+      <td><img th:src="@{'/image/' + ${p.image}}" alt=""></td>
       <td th:text="${p.price}"></td>
       <td th:text="${p.quantity}"></td>
       <td th:text="${p.category.name}"></td>

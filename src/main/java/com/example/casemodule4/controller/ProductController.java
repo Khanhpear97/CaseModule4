@@ -18,6 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 @Controller
 @RequestMapping("api/products")
@@ -28,8 +31,8 @@ public class ProductController {
     @Autowired
     ICategoryService categoryService;
 
-//    @Value("${file-upload}")
-//    private String upload;
+    @Value("$={file-upload}")
+    private String upload;
 
     @ModelAttribute("categories")
     public Iterable<Category> findAll() {
@@ -60,20 +63,21 @@ public class ProductController {
 
     @PostMapping
     public String save(@ModelAttribute Product product) {
-//        MultipartFile file = product.getFile();
-//        if (file.getSize() != 0) {
-//            String fileName = file.getOriginalFilename();
-//            try {
-//                FileCopyUtils.copy(file.getBytes(), new File(upload + fileName));
-//                product.setImage(fileName);
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
-//        } else if (product.getId() == null) {
-//            product.setImage("banh-gao.jpg");
-//        } else {
-//            product.setImage(productService.findById(product.getId()).getImage());
-//        }
+        MultipartFile file = product.getFile();
+        if (file.getSize() != 0) {
+            String fileName = file.getOriginalFilename();
+            try {
+                FileCopyUtils.copy(file.getBytes(), new File(upload + fileName));
+                product.setImage(fileName);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else if (product.getId() == null) {
+            product.setImage("banh-gao.jpg");
+        } else {
+            product.setImage(productService.findById(product.getId()).getImage());
+        }
+        System.out.println(file.getOriginalFilename());
         productService.save(product);
         return "redirect:/api/products";
     }
