@@ -27,6 +27,11 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    @GetMapping("/login")
+    public String showLogin(){
+        return "login";
+    }
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Users user) {
         Authentication authentication
