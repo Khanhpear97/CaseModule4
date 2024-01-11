@@ -1,5 +1,6 @@
 package com.example.casemodule4.controller;
 
+import com.example.casemodule4.model.Product;
 import com.example.casemodule4.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +19,14 @@ public class ProductController {
     @GetMapping("")
     public ModelAndView findAll(@PageableDefault Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("/product/list");
-        modelAndView.addObject("products", productService.findAll(pageable));
+        modelAndView.addObject("product", productService.findAll(pageable));
+        return modelAndView;
+    }
+
+    @GetMapping("/create")
+    public ModelAndView showForm() {
+        ModelAndView modelAndView = new ModelAndView("/product/form");
+        modelAndView.addObject("product", new Product());
         return modelAndView;
     }
 }

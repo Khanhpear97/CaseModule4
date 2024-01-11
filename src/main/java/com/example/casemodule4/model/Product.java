@@ -2,6 +2,7 @@ package com.example.casemodule4.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "table")
@@ -14,6 +15,9 @@ public class Product {
     private String image;
     private Long price;
     private Long quantity;
+
+    @Transient
+    private MultipartFile file;
 
     @ManyToOne
     private Category category;
