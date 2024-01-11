@@ -1,20 +1,39 @@
 package com.example.casemodule4.controller;
 
+import com.example.casemodule4.model.Category;
 import com.example.casemodule4.model.Product;
+import com.example.casemodule4.service.ICategoryService;
 import com.example.casemodule4.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.io.File;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("api/products")
 public class ProductController {
     @Autowired
     IProductService productService;
+
+    @Autowired
+    ICategoryService categoryService;
+
+//    @Value("${file-upload}")
+//    private String upload;
+
+    @ModelAttribute("categories")
+    public Iterable<Category> findAll() {
+        return categoryService.findAll();
+    }
+
 
     @GetMapping("")
     public ModelAndView findAll(@PageableDefault Pageable pageable) {
@@ -26,7 +45,38 @@ public class ProductController {
     @GetMapping("/create")
     public ModelAndView showForm() {
         ModelAndView modelAndView = new ModelAndView("/product/form");
-        modelAndView.addObject("product", new Product());
+        modelAndView.addObject("products", new Product());
         return modelAndView;
+    }
+
+    @PostMapping("/create")
+    public String save(@ModelAttribute Product product) {
+//        MultipartFile file = product.getFile();
+//        if (file.getSize() != 0) {
+//            String fileName = file.getOriginalFilename();
+//            try {
+//                FileCopyUtils.copy(file.getBytes(), new File(upload + fileName));
+//                product.setImage(fileName);
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//            }
+//        } else if (product.getId() == null) {
+//            product.setImage("banh-gao.jpg");
+//        } else {
+//            product.setImage(productService.findById(product.getId()).getImage());
+//        }
+        productService.save(product);
+        return "redirect:/api/products";
+    }
+
+    @GetMapping("/{id}")
+    public ModelAndView showUpdateForm(@PathVariable Long id) {
+        return new ModelAndView("/product/form", "product",productService.findById(id));
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        productService.remove(id);
+        return "redirect:/api/products";
     }
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 @Entity
-@Table(name = "table")
+@Table(name = "product")
 @Data
 public class Product {
     @Id
