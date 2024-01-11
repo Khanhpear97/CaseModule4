@@ -18,5 +18,5 @@ public class Users {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Role> role;
+    private Set<Role> roles;
 }
