@@ -18,7 +18,7 @@ import java.io.File;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("admin/products")
+@RequestMapping("admin")
 public class AdminController {
     @Autowired
     IProductService productService;
@@ -35,28 +35,28 @@ public class AdminController {
     }
 
 
-    @GetMapping("")
+    @GetMapping("/home")
     public ModelAndView findAll(@PageableDefault(size = 5) Pageable pageable) {
-        ModelAndView modelAndView = new ModelAndView("/product/list");
+        ModelAndView modelAndView = new ModelAndView("/admin/home");
         modelAndView.addObject("products", productService.findAll(pageable));
         return modelAndView;
     }
 
     @GetMapping("/create")
     public ModelAndView showForm() {
-        ModelAndView modelAndView = new ModelAndView("/product/form");
+        ModelAndView modelAndView = new ModelAndView("/admin/form");
         modelAndView.addObject("products", new Product());
         return modelAndView;
     }
 
     @GetMapping("/{id}")
     public ModelAndView showUpdateForm(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("/product/form");
+        ModelAndView modelAndView = new ModelAndView("/admin/form");
         modelAndView.addObject("products", productService.findById(id));
         return modelAndView;
     }
 
-    @PostMapping
+    @PostMapping("/home")
     public String save(@ModelAttribute Product product) {
         MultipartFile file = product.getFile();
         if (file.getSize() != 0) {
@@ -74,12 +74,12 @@ public class AdminController {
         }
         System.out.println(file.getOriginalFilename());
         productService.save(product);
-        return "redirect:/admin/products";
+        return "redirect:/admin/home";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
         productService.remove(id);
-        return "redirect:/admin/products";
+        return "redirect:/admin/home";
     }
 }

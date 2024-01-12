@@ -17,12 +17,12 @@
   <h1>List products</h1>
   <div class="row">
     <div class="col-md-8">
-      <a class="btn btn-primary" th:href="@{/admin/products/create}">Create new</a>
-      <a class="btn btn-primary" th:href="@{/categories}">Categories</a>
+      <a class="btn btn-primary" th:href="@{/admin/create}">Create new</a>
+      <a class="btn btn-primary" th:href="@{/admin/categories}">Categories</a>
       <a class="btn btn-primary" th:href="@{/carts}">Carts</a>
     </div>
     <div class="col-md-4">
-      <form th:action="@{/admin/products/search}" method="post">
+      <form th:action="@{/admin/search}" method="post">
         <label>
           <input type="text" name="name">
         </label>
@@ -58,12 +58,12 @@
         </a>
       </td>
       <td>
-        <a class="btn btn-warning" th:href="@{/admin/products/__${p.id}__}">
+        <a class="btn btn-warning" th:href="@{/admin/__${p.id}__}">
           Update
         </a>
       </td>
       <td>
-        <a class="btn btn-danger" th:href="@{/admin/products/delete/__${p.id}__}">
+        <a class="btn btn-danger" th:href="@{/admin/delete/__${p.id}__}">
           Delete
         </a>
       </td>
