@@ -4,10 +4,8 @@ import com.example.casemodule4.model.Category;
 import com.example.casemodule4.model.Product;
 import com.example.casemodule4.service.ICategoryService;
 import com.example.casemodule4.service.IProductService;
-import jakarta.validation.constraints.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -18,13 +16,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 @Controller
-@RequestMapping("api/products")
-public class ProductController {
+@RequestMapping("admin/products")
+public class AdminController {
     @Autowired
     IProductService productService;
 
@@ -73,18 +68,18 @@ public class ProductController {
                 ex.printStackTrace();
             }
         } else if (product.getId() == null) {
-            product.setImage("banh-gao.jpg");
+            product.setImage("No image.jpg");
         } else {
             product.setImage(productService.findById(product.getId()).getImage());
         }
         System.out.println(file.getOriginalFilename());
         productService.save(product);
-        return "redirect:/api/products";
+        return "redirect:/admin/products";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
         productService.remove(id);
-        return "redirect:/api/products";
+        return "redirect:/admin/products";
     }
 }

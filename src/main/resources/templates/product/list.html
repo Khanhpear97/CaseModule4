@@ -17,12 +17,12 @@
   <h1>List products</h1>
   <div class="row">
     <div class="col-md-8">
-      <a class="btn btn-primary" th:href="@{/api/products/create}">Create new</a>
-      <a class="btn btn-primary" th:href="@{/api/categories}">Categories</a>
-      <a class="btn btn-primary" th:href="@{/api/carts}">Carts</a>
+      <a class="btn btn-primary" th:href="@{/admin/products/create}">Create new</a>
+      <a class="btn btn-primary" th:href="@{/categories}">Categories</a>
+      <a class="btn btn-primary" th:href="@{/carts}">Carts</a>
     </div>
     <div class="col-md-4">
-      <form th:action="@{/api/products/search}" method="post">
+      <form th:action="@{/admin/products/search}" method="post">
         <label>
           <input type="text" name="name">
         </label>
@@ -53,17 +53,17 @@
       <td th:text="${p.quantity}"></td>
       <td th:text="${p.category.name}"></td>
       <td>
-        <a class="btn btn-info" th:href="@{/api/carts/__${p.id}__}">
+        <a class="btn btn-info" th:href="@{/admin/carts/__${p.id}__}">
           Add to cart
         </a>
       </td>
       <td>
-        <a class="btn btn-warning" th:href="@{/api/products/__${p.id}__}">
+        <a class="btn btn-warning" th:href="@{/admin/products/__${p.id}__}">
           Update
         </a>
       </td>
       <td>
-        <a class="btn btn-danger" th:href="@{/api/products/delete/__${p.id}__}">
+        <a class="btn btn-danger" th:href="@{/admin/products/delete/__${p.id}__}">
           Delete
         </a>
       </td>
@@ -72,12 +72,12 @@
   </table>
   <div class="container">
     <a th:if="${products.hasPrevious()}"
-       th:href="@{/api/products(page=${products.number - 1})}"
+       th:href="@{/products(page=${products.number - 1})}"
        class="btn btn-primary">Prev</a>
     <span th:text="${products.number + 1}"></span>
     |&nbsp;<span th:text="${products.totalPages}"></span>
     <a th:if="${products.hasNext()}"
-       th:href="@{/api/products(page=${products.number + 1})}"
+       th:href="@{/products(page=${products.number + 1})}"
        class="btn btn-primary">Next</a>
   </div>
 </div>
