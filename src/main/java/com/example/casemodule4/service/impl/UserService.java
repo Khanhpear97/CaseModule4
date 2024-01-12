@@ -1,26 +1,26 @@
 package com.example.casemodule4.service.impl;
 
-import com.example.casemodule4.model.Users;
 import com.example.casemodule4.repository.IUserRepository;
 import com.example.casemodule4.security.UserPrinciple;
 import com.example.casemodule4.service.IUserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+@Component
+@RequiredArgsConstructor
 @Service
-public class UserService implements UserDetailsService, IUserService {
+public class UserService implements  IUserService, UserDetailsService {
     @Autowired
     private IUserRepository userRepository;
-
-    public Users findByUsername(String name) {
-        return userRepository.findByUsername(name);
-    }
-
-    public UserDetails loadUserByUsername(String username) {
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return UserPrinciple.build(userRepository.findByUsername(username));
     }
 
