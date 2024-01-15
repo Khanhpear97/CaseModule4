@@ -41,13 +41,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/home","/image/**", "/css/**").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/", "/home","/image/**", "/css/**","/register").permitAll()
+                        .requestMatchers("/home/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/test/**").hasAuthority("ROLE_USER")
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .successHandler(successHandler())
                         .permitAll()
-                        .defaultSuccessUrl("/home")
                 )
                 .logout((logout) -> logout.permitAll());
 
@@ -59,9 +61,9 @@ public class SecurityConfig {
         return (request, response, authentication) -> {
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             if (authorities.stream().anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"))) {
-                response.sendRedirect("/admin");
-            } else if (authorities.stream().anyMatch(authority -> authority.getAuthority().equals("ROLE_CUSTOMER"))) {
-                response.sendRedirect("/user");
+                response.sendRedirect("/home");
+            } else if (authorities.stream().anyMatch(authority -> authority.getAuthority().equals("ROLE_USER"))) {
+                response.sendRedirect("/test");
             }
         };
     }
