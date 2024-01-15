@@ -51,7 +51,7 @@ public class CategoryService {
     }
 
     public Category getCategoryById (Long id) {
-
+return null;
     }
 
     public List<Category> getAllCategories ( ) {
