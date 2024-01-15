@@ -1,6 +1,7 @@
 package com.example.casemodule4.service;
 
-import com.example.casemodule4.model.Category;
+
+import jdk.jfr.Category;
 
 public interface ICategoryService extends IGenerateService<Category> {
 

@@ -1,5 +1,6 @@
 package com.example.casemodule4.service.impl;
 
+
 import com.example.casemodule4.repository.ICategoryRepository;
 import jdk.jfr.Category;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +10,16 @@ import java.util.List;
 
 @Service
 public class CategoryService {
-    private final ICategoryRepository iCategoryRepository;
+
+
+   private final ICategoryRepository iCategoryRepository;
 
     @Autowired
     public CategoryService(ICategoryRepository iCategoryRepository) {
 
         this.iCategoryRepository = iCategoryRepository;
     }
-
+// bỏ
 //    public Category iCategoryRepository(Category category) {
 //
 //        return iCategoryRepository.save(Category category);
@@ -38,7 +41,7 @@ public class CategoryService {
 //        return iCategoryRepository.save(category);
 //    }
 
-    public void deleteCategory(Long id) {
+  public void deleteCategory(Long id) {
         iCategoryRepository.deleteById(id);
     }
 

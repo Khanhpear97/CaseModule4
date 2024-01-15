@@ -1,9 +1,10 @@
 package com.example.casemodule4.controller;
 
-import com.example.casemodule4.model.Category;
+//import com.example.casemodule4.model.Category;
 import com.example.casemodule4.model.Product;
 import com.example.casemodule4.service.ICategoryService;
 import com.example.casemodule4.service.IProductService;
+import jdk.jfr.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
