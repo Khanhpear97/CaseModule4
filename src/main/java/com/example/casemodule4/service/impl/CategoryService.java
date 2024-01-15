@@ -17,11 +17,11 @@ public class CategoryService {
         this.iCategoryRepository = iCategoryRepository;
     }
 
-    public Category iCategoryRepository(Category category) {
-
-        return iCategoryRepository.save(Category category);
-    }
+//    public Category iCategoryRepository(Category category) {
 //
+//        return iCategoryRepository.save(Category category);
+//    }
+////
 //    public List<Category> getAllCategories() {
 //
 //        return iCategoryRepository.findAll();
@@ -51,6 +51,7 @@ public class CategoryService {
     }
 
     public Category getCategoryById (Long id) {
+
     }
 
     public List<Category> getAllCategories ( ) {
