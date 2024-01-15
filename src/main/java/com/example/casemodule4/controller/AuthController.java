@@ -5,13 +5,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping()
 public class AuthController {
 
-    @GetMapping()
-    public ModelAndView showLogin(){
-        return new ModelAndView("/login/index");
+    @GetMapping("/login")
+    public String showLogin(){
+        return ("/login/index");
     }
-
+    @GetMapping("/home")
+    public String showHome(){
+        return "/login/home";
+    }
 
 }

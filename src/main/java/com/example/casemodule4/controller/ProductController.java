@@ -21,4 +21,6 @@ public class ProductController {
         modelAndView.addObject("products", productService.findAll(pageable));
         return modelAndView;
     }
+
+
 }
