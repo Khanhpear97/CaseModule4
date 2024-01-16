@@ -13,14 +13,14 @@ public class AuthController {
     public String showLogin(){
         return ("/login/index");
     }
-    @GetMapping("/test")
-    public String showTest(){
-        return ("/login/test");
-    }
-    @GetMapping("/home")
-    public String showHome(){
-        return ("/login/home");
-    }
+//    @GetMapping("/test")
+//    public String showTest(){
+//        return ("/login/test");
+//    }
+//    @GetMapping("/home")
+//    public String showHome(){
+//        return ("/login/home");
+//    }
     @GetMapping("/register")
     public ModelAndView showRegister(){
         Users user = new Users();

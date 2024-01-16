@@ -42,8 +42,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/", "/home","/image/**", "/css/*","/register").permitAll()
-                        .requestMatchers("/home/**").hasAuthority("ROLE_ADMIN")
-                        .requestMatchers("/test/**").hasAuthority("ROLE_CUSTOMER")
+                        .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/customer/**").hasAuthority("ROLE_CUSTOMER")
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
@@ -61,9 +61,9 @@ public class SecurityConfig {
         return (request, response, authentication) -> {
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             if (authorities.stream().anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"))) {
-                response.sendRedirect("/home");
+                response.sendRedirect("/admin/home");
             } else if (authorities.stream().anyMatch(authority -> authority.getAuthority().equals("ROLE_CUSTOMER"))) {
-                response.sendRedirect("/test");
+                response.sendRedirect("/customer/home");
             }
         };
     }
