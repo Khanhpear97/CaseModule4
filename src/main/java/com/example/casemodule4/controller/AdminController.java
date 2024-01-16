@@ -37,7 +37,7 @@ public class AdminController {
 
     @GetMapping("/home")
     public ModelAndView findAll(@PageableDefault(size = 5) Pageable pageable) {
-        ModelAndView modelAndView = new ModelAndView("/admin/home");
+        ModelAndView modelAndView = new ModelAndView("admin/home");
         modelAndView.addObject("products", productService.findAll(pageable));
         return modelAndView;
     }
