@@ -1,4 +1,4 @@
 package com.example.casemodule4.service;
 
-public interface IUserService {
+public interface IUserService extends IGenerateService {
 }

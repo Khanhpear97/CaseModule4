@@ -1,10 +1,10 @@
 package com.example.casemodule4.repository;
 
-import com.example.casemodule4.model.Users;
+import com.example.casemodule4.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IUserRepository extends JpaRepository<Users, Long> {
-    Users findByUsername(String username);
+public interface IRoleRepository extends JpaRepository<Role, Long> {
+Role findByName(String name);
 }

@@ -33,6 +33,10 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+    testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('bootBuildImage') {

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Classy Login form Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/login.css">
+
+
+</head>
+<body>
+<div class="header">
+    <div class="header-main">
+        <h1>Sign In</h1>
+        <div class="header-bottom">
+            <div class="header-right w3agile">
+
+                <div class="header-left-bottom agileinfo">
+
+                    <form th:action="@{/login}" method="post">
+                        <div><label> User Name : <input type="text" name="username"/> </label></div>
+                        <div><label> Password: <input type="password" name="password"/> </label></div>
+                        <div class="remember">
+			             <span class="checkbox1">
+							   <label class="checkbox"><input type="checkbox" name="" checked=""><i> </i>Remember me</label>
+						 </span>
+                            <div class="forgot">
+                                <h6><a href="#">Forgot Password?</a></h6>
+                            </div>
+                            <div class="clear"> </div>
+                        </div>
+
+                        <input type="submit" value="Login">
+                    </form>
+                    <div class="header-left-top">
+                        <div class="sign-up"> <h2>or</h2> </div>
+
+                    </div>
+                    <a th:href="@{/register}" ><input  type="submit" value="Register"></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="copyright">
+    <p>@C0823H1 WITH LOVE </p>
+</div>
+</body>
+</html>
