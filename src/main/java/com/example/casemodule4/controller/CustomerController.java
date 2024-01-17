@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,6 +29,11 @@ public class CustomerController {
         return categoryService.findAll();
     }
 
+    @GetMapping("/search")
+    public String searchByName(Model model, @RequestParam String keyword, @PageableDefault(size = 5) Pageable pageable) {
+        model.addAttribute("product", productService.searchByName(keyword, pageable));
+        return "customer/home";
+    }
 
     @GetMapping("/home")
     public ModelAndView findAll(@PageableDefault(size = 5) Pageable pageable) {

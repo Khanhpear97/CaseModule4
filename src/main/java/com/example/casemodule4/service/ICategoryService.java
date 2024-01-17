@@ -4,6 +4,8 @@ import com.example.casemodule4.model.Category;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface ICategoryService extends IGenerateService<Category> {
     Iterable<Category> findAll();
 }
