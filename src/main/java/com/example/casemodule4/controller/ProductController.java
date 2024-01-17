@@ -56,18 +56,6 @@ public class ProductController {
         productService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    @GetMapping("/men")
-    public ResponseEntity<Iterable<Product>> searchMen() {
-        Iterable<Product> products = productService.searchByGender("Nam");
-        return new ResponseEntity<>(products, HttpStatus.OK);
-    }
-
-    @GetMapping("/women")
-    public ResponseEntity<Iterable<Product>> searchWomen() {
-        return new ResponseEntity<>(productService.searchByGender("Nữ"), HttpStatus.OK);
-    }
-
     @PostMapping("/productRepository")
     public ResponseEntity<Iterable<Product>> searchProductByName(@RequestBody Product product) {
         return new ResponseEntity<>(productService.searchProductByName(product.getName()), HttpStatus.OK);
@@ -85,11 +73,11 @@ public class ProductController {
 //        Double num2 = searchOBJ.getNum2();
 //        Long id = searchOBJ.getId();
 //        String name = "%"+searchOBJ.getName()+"%";
-////        Iterable<Product> products =productRepository.search1and2();
+//       Iterable<Product> products =productRepository.search1and2();
 //        Iterable<Product> products =productRepository.search1and3(num1,num2,name);
-////        Iterable<Product> products =productRepository.search1and2and3(num1,num2,id,name);
-////        Iterable<Product> products =productRepository.search2and3(id,name);
-////        Iterable<Product> products =productRepository.search3(name);
+//        Iterable<Product> products =productRepository.search1and2and3(num1,num2,id,name);
+//      Iterable<Product> products =productRepository.search2and3(id,name);
+//       Iterable<Product> products =productRepository.search3(name);
 //
 //        return new ResponseEntity<>(products, HttpStatus.OK);
 //    }
