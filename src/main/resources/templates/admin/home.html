@@ -19,7 +19,6 @@
         <div class="col-md-8">
             <a class="btn btn-primary" th:href="@{/admin/create}">Create new</a>
             <a class="btn btn-primary" th:href="@{/admin/categories}">Categories</a>
-            <a class="btn btn-primary" th:href="@{/carts}">Carts</a>
         </div>
         <div class="col-md-4">
             <form th:action="@{/admin/search}" method="post">
@@ -52,11 +51,6 @@
             <td th:text="${p.price}"></td>
             <td th:text="${p.quantity}"></td>
             <td th:text="${p.category.name}"></td>
-            <td>
-                <a class="btn btn-info" th:href="@{/admin/carts/__${p.id}__}">
-                    Add to cart
-                </a>
-            </td>
             <td>
                 <a class="btn btn-warning" th:href="@{/admin/__${p.id}__}">
                     Update

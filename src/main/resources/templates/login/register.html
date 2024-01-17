@@ -9,10 +9,18 @@
     <link rel="stylesheet" href="/css/register.css">
 </head>
 <body>
-<form th:object="${users}">
+<form th:object="${users}" th:action="@{/register}" method="post">
+    <label>
+        <div th:if="${param.success}">
+            <div class="alert alert-info">
+                You have successfully registered our app!
+            </div>
+        </div>
+    </label>
     <label>
         <p class="label-txt">ENTER USERNAME</p>
         <input type="text" class="input" th:field="${users.username}">
+        <p th:errors="*{username}" th:if="${#fields.hasErrors('username')}"></p>
         <div class="line-box">
             <div class="line"></div>
         </div>
@@ -21,6 +29,7 @@
     <label>
         <p class="label-txt">ENTER YOUR PASSWORD</p>
         <input type="text" class="input" th:field="${users.password}">
+        <p th:errors="*{password}" th:if="${#fields.hasErrors('password')}"></p>
         <div class="line-box">
             <div class="line"></div>
         </div>
@@ -29,6 +38,7 @@
     <label>
         <p class="label-txt">ENTER EMAIL</p>
         <input type="text" class="input" th:field="${users.email}">
+        <p th:errors="*{email}" th:if="${#fields.hasErrors('email')}"></p>
         <div class="line-box">
             <div class="line"></div>
         </div>
@@ -37,6 +47,7 @@
     <label>
         <p class="label-txt">ENTER YOUR NAME</p>
         <input type="text" class="input" th:field="${users.name}">
+        <p th:errors="*{name}" th:if="${#fields.hasErrors('name')}"></p>
         <div class="line-box">
             <div class="line"></div>
         </div>
@@ -45,6 +56,7 @@
     <label>
         <p class="label-txt">ENTER YOUR AGE</p>
         <input type="text" class="input" th:field="${users.age}">
+        <p th:errors="*{age}" th:if="${#fields.hasErrors('age')}"></p>
         <div class="line-box">
             <div class="line"></div>
         </div>
@@ -53,12 +65,15 @@
     <label>
         <p class="label-txt">ENTER YOUR PHONE</p>
         <input type="text" class="input" th:field="${users.phone}">
+        <p th:errors="*{phone}" th:if="${#fields.hasErrors('phone')}"></p>
         <div class="line-box">
             <div class="line"></div>
         </div>
     </label>
 
     <button type="submit">submit</button>
+    <button type="button" onclick="window.location.href='/login'">Login here</button>
+
 </form>
 </body>
 </html>

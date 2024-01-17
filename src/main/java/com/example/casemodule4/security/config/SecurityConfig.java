@@ -1,5 +1,6 @@
 package com.example.casemodule4.security.config;
 
+import com.example.casemodule4.repository.IUserRepository;
 import com.example.casemodule4.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +22,7 @@ import java.util.Collection;
 @EnableWebSecurity
 public class SecurityConfig {
     @Autowired
-    private UserDetailsService userService;
+    private UserDetailsService userDetailsService;
 
 //    @Bean
 //    public UserDetailsService userDetailsService(){
@@ -34,14 +35,14 @@ public class SecurityConfig {
     @Bean
         public AuthenticationProvider authenticationProvider() {
             DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-            authenticationProvider.setUserDetailsService(userService);
+            authenticationProvider.setUserDetailsService(userDetailsService);
             authenticationProvider.setPasswordEncoder(passwordEncoder());
             return authenticationProvider;
     }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/home","/image/**", "/css/*","/register").permitAll()
+                        .requestMatchers("/","/image/**", "/css/*","/register/**","/login").permitAll()
                         .requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers("/customer/**").hasAuthority("ROLE_CUSTOMER")
                 )
